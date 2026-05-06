@@ -1,0 +1,216 @@
+{% extends 'base.html' %}
+{% block title %}Mahamaya Real Estate — Premium Plots & Land Investments{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1600&q=80');"></div>
+    <div class="hero-overlay"></div>
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-7 hero-content">
+                <div class="hero-badge">🏆 Trusted Since 2010</div>
+                <h1 class="hero-title">Find Your <span>Dream Plot</span> With Confidence</h1>
+                <p class="hero-subtitle">Discover premium residential, commercial, and agricultural plots across Chhattisgarh. Transparent deals, verified properties, and expert guidance at every step.</p>
+                <div class="hero-buttons d-flex gap-3 flex-wrap">
+                    <a href="{{ url_for('main.plots') }}" class="btn-primary-custom"><i class="bi bi-search"></i> Explore Plots</a>
+                    <a href="{{ url_for('main.contact') }}" class="btn-outline-custom">Get in Touch</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <h3 class="counter-animate" data-target="500">0+</h3>
+                        <p>Plots Sold</p>
+                    </div>
+                    <div class="hero-stat">
+                        <h3 class="counter-animate" data-target="15">0+</h3>
+                        <p>Years Experience</p>
+                    </div>
+                    <div class="hero-stat">
+                        <h3 class="counter-animate" data-target="1200">0+</h3>
+                        <p>Happy Families</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Plots -->
+<section class="section-padding">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="badge-label">Featured Properties</span>
+            <h2>Handpicked Premium Plots</h2>
+            <p>Explore our curated selection of the finest plots available for investment and development.</p>
+        </div>
+        <div class="row g-4">
+            {% for plot in featured_plots %}
+            <div class="col-lg-4 col-md-6 fade-in-up">
+                <div class="plot-card">
+                    <div class="plot-card-img">
+                        {% if plot.image_filename and plot.image_filename != 'default_plot.jpg' %}
+                        <img src="{{ url_for('static', filename='uploads/' + plot.image_filename) }}" alt="{{ plot.title }}">
+                        {% else %}
+                        <div class="img-placeholder" style="height:220px;"><i class="bi bi-image"></i></div>
+                        {% endif %}
+                        <span class="plot-card-badge">{{ plot.plot_type }}</span>
+                    </div>
+                    <div class="plot-card-body">
+                        <h5>{{ plot.title }}</h5>
+                        <div class="plot-card-meta">
+                            <span><i class="bi bi-geo-alt"></i> {{ plot.location }}</span>
+                            <span><i class="bi bi-arrows-angle-expand"></i> {{ plot.size }}</span>
+                        </div>
+                        <div class="plot-card-footer">
+                            <span class="plot-price">{{ plot.formatted_price() }}</span>
+                            <a href="{{ url_for('main.plot_detail', plot_id=plot.id) }}" class="btn btn-sm">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% if not featured_plots %}
+            <div class="col-12 text-center py-5">
+                <i class="bi bi-inbox display-4 text-muted"></i>
+                <p class="text-muted mt-3">No featured plots available at the moment.</p>
+            </div>
+            {% endif %}
+        </div>
+        {% if featured_plots %}
+        <div class="text-center mt-5 reveal">
+            <a href="{{ url_for('main.plots') }}" class="btn-primary-custom"><i class="bi bi-grid"></i> View All {{ total_plots }} Plots</a>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Why Choose Us -->
+<section class="section-padding section-dark">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="badge-label">Why Mahamaya</span>
+            <h2>Why Thousands Trust Us</h2>
+            <p>We combine expertise, transparency, and commitment to deliver an unmatched real estate experience.</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6 reveal">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="bi bi-shield-check"></i></div>
+                    <h5>Verified Properties</h5>
+                    <p>Every plot is legally verified with clear titles and proper documentation.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 reveal">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="bi bi-cash-stack"></i></div>
+                    <h5>Best Prices</h5>
+                    <p>Competitive pricing with flexible payment plans to suit your budget.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 reveal">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="bi bi-headset"></i></div>
+                    <h5>Expert Guidance</h5>
+                    <p>Dedicated support team to help you at every stage of your purchase.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 reveal">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="bi bi-graph-up-arrow"></i></div>
+                    <h5>High ROI</h5>
+                    <p>Strategic locations ensuring excellent returns on your investment.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Our Approach — Inspired by Keertimukha's tabbed design -->
+<section class="section-padding section-warm">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-5 reveal">
+                <span class="badge-label">Our Approach</span>
+                <h2 class="mb-3">Architecture That Stands The <span style="color:var(--maroon,#6b1d2a);">Test of Time</span></h2>
+                <p style="color:var(--text-light);margin-bottom:25px;">We believe every plot deserves a vision. Our approach is built on three pillars that ensure your investment is sound, sustainable, and rewarding.</p>
+                <div class="d-flex gap-3 flex-wrap">
+                    <div class="float" style="background:var(--black,#0a0a0a);color:#fff;padding:18px 22px;border-radius:var(--radius);text-align:center;flex:1;min-width:120px;">
+                        <i class="bi bi-search" style="font-size:1.5rem;display:block;margin-bottom:6px;"></i>
+                        <strong style="font-size:.85rem;">Researched</strong>
+                    </div>
+                    <div class="float float-delay-1" style="background:var(--gray-700,#404040);color:#fff;padding:18px 22px;border-radius:var(--radius);text-align:center;flex:1;min-width:120px;">
+                        <i class="bi bi-gear" style="font-size:1.5rem;display:block;margin-bottom:6px;"></i>
+                        <strong style="font-size:.85rem;">Functional</strong>
+                    </div>
+                    <div class="float float-delay-2" style="background:var(--accent,#c9a55a);color:var(--black,#0a0a0a);padding:18px 22px;border-radius:var(--radius);text-align:center;flex:1;min-width:120px;">
+                        <i class="bi bi-trophy" style="font-size:1.5rem;display:block;margin-bottom:6px;"></i>
+                        <strong style="font-size:.85rem;">Performing</strong>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7 reveal">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="feature-card text-start" style="padding:28px;">
+                            <div style="color:var(--maroon);font-size:2rem;font-weight:900;font-family:'Inter',sans-serif;opacity:.15;">01</div>
+                            <h5>Vastu Compliant</h5>
+                            <p>All our plots and designs follow Vastu Shastra principles for prosperity and positive energy.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="feature-card text-start" style="padding:28px;">
+                            <div style="color:var(--maroon);font-size:2rem;font-weight:900;font-family:'Inter',sans-serif;opacity:.15;">02</div>
+                            <h5>Legal Clarity</h5>
+                            <p>Complete title verification, NA conversion, and registry support for every property.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="feature-card text-start" style="padding:28px;">
+                            <div style="color:var(--maroon);font-size:2rem;font-weight:900;font-family:'Inter',sans-serif;opacity:.15;">03</div>
+                            <h5>Architectural Vision</h5>
+                            <p>Expert architectural planning by Arch. Archita Jha for those who want to build on their plot.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="feature-card text-start" style="padding:28px;">
+                            <div style="color:var(--maroon);font-size:2rem;font-weight:900;font-family:'Inter',sans-serif;opacity:.15;">04</div>
+                            <h5>End-to-End Support</h5>
+                            <p>From plot selection to construction — Mr. Santosh Jha ensures quality delivery at every step.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Free Consultation Banner -->
+<section style="background:linear-gradient(135deg,var(--black,#0a0a0a),var(--gray-800,#2d2d2d));padding:50px 0;position:relative;overflow:hidden;">
+    <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle at 20% 50%,rgba(245,230,211,0.08),transparent 60%);"></div>
+    <div class="container position-relative" style="z-index:2;">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <h3 style="color:#fff;font-size:1.8rem;margin-bottom:6px;">Book a Free Consultation According to Vastu</h3>
+                <p style="color:rgba(255,255,255,0.7);margin:0;">Get expert advice on plot selection, architectural planning, and investment strategy — absolutely free.</p>
+            </div>
+            <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+                <a href="https://wa.me/917898218907?text=Hi%2C%20I%20want%20a%20free%20consultation" class="btn-primary-custom" target="_blank"><i class="bi bi-whatsapp"></i> Chat Now — Free</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section section-dark">
+    <div class="container text-center position-relative" style="z-index:2;">
+        <h2 class="mb-3">Ready to Invest in Your Future?</h2>
+        <p class="mb-4" style="color:rgba(255,255,255,0.8);font-size:1.1rem;max-width:600px;margin:0 auto 30px;">
+            Take the first step toward owning your dream property. Our experts are here to guide you.
+        </p>
+        <div class="d-flex gap-3 justify-content-center flex-wrap">
+            <a href="{{ url_for('main.plots') }}" class="btn-primary-custom"><i class="bi bi-search"></i> Browse Plots</a>
+            <a href="{{ url_for('main.contact') }}" class="btn-outline-custom">Schedule a Visit</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

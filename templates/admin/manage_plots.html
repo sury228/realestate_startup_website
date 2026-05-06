@@ -1,0 +1,59 @@
+{% extends 'admin/base_admin.html' %}
+{% block admin_title %}Manage Plots{% endblock %}
+
+{% block admin_content %}
+<div class="admin-header">
+    <h2><i class="bi bi-map me-2"></i>Manage Plots</h2>
+    <a href="{{ url_for('admin.add_plot') }}" class="btn-primary-custom" style="padding:10px 24px;font-size:0.9rem;"><i class="bi bi-plus-circle"></i> Add New Plot</a>
+</div>
+
+<div class="admin-table">
+    <div class="table-responsive">
+        <table class="table mb-0">
+            <thead>
+                <tr><th>Image</th><th>Title</th><th>Price</th><th>Location</th><th>Size</th><th>Type</th><th>Status</th><th>Actions</th></tr>
+            </thead>
+            <tbody>
+                {% for plot in plots.items %}
+                <tr>
+                    <td>
+                        {% if plot.image_filename and plot.image_filename != 'default_plot.jpg' %}
+                        <img src="{{ url_for('static', filename='uploads/' + plot.image_filename) }}" style="width:60px;height:45px;object-fit:cover;border-radius:8px;">
+                        {% else %}
+                        <div style="width:60px;height:45px;background:var(--bg);border-radius:8px;display:flex;align-items:center;justify-content:center;"><i class="bi bi-image text-muted"></i></div>
+                        {% endif %}
+                    </td>
+                    <td><strong>{{ plot.title[:35] }}{% if plot.title|length > 35 %}...{% endif %}</strong>{% if plot.is_featured %}<br><span class="badge badge-featured" style="font-size:0.7rem;">Featured</span>{% endif %}</td>
+                    <td>{{ plot.formatted_price() }}</td>
+                    <td><small>{{ plot.location }}</small></td>
+                    <td><small>{{ plot.size }}</small></td>
+                    <td><small>{{ plot.plot_type }}</small></td>
+                    <td>{% if plot.is_available %}<span class="badge badge-available">Available</span>{% else %}<span class="badge badge-sold">Sold</span>{% endif %}</td>
+                    <td>
+                        <div class="d-flex gap-1">
+                            <a href="{{ url_for('admin.edit_plot', plot_id=plot.id) }}" class="btn btn-sm btn-outline-primary" style="border-radius:6px;"><i class="bi bi-pencil"></i></a>
+                            <form method="POST" action="{{ url_for('admin.delete_plot', plot_id=plot.id) }}" class="d-inline">
+                                <button type="submit" class="btn btn-sm btn-outline-danger btn-delete-confirm" style="border-radius:6px;"><i class="bi bi-trash"></i></button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+                {% if not plots.items %}
+                <tr><td colspan="8" class="text-center text-muted py-5"><i class="bi bi-inbox display-6"></i><br>No plots added yet.<br><a href="{{ url_for('admin.add_plot') }}">Add your first plot</a></td></tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% if plots.pages > 1 %}
+<nav class="mt-4 d-flex justify-content-center">
+    <ul class="pagination">
+        {% if plots.has_prev %}<li class="page-item"><a class="page-link" href="{{ url_for('admin.manage_plots', page=plots.prev_num) }}">&laquo;</a></li>{% endif %}
+        {% for p in plots.iter_pages() %}{% if p %}<li class="page-item {% if p == plots.page %}active{% endif %}"><a class="page-link" href="{{ url_for('admin.manage_plots', page=p) }}">{{ p }}</a></li>{% endif %}{% endfor %}
+        {% if plots.has_next %}<li class="page-item"><a class="page-link" href="{{ url_for('admin.manage_plots', page=plots.next_num) }}">&raquo;</a></li>{% endif %}
+    </ul>
+</nav>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% block title %}Our Services — Mahamaya Real Estate{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <h1>Our <span class="text-accent">Services</span></h1>
+        <p>Comprehensive real estate solutions tailored to your needs</p>
+        <div class="breadcrumb-custom"><a href="{{ url_for('main.home') }}">Home</a><span>/</span><span>Services</span></div>
+    </div>
+</section>
+
+<section class="section-padding">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="badge-label">What We Offer</span>
+            <h2>End-to-End Real Estate Solutions</h2>
+            <p>From finding the perfect plot to legal paperwork, we handle it all with expertise and care.</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6 reveal">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="bi bi-map"></i></div>
+                    <h5>Plot Sales</h5>
+                    <p>Wide selection of verified residential, commercial, and agricultural plots at competitive prices with clear titles.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 reveal">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="bi bi-file-earmark-check"></i></div>
+                    <h5>Legal Assistance</h5>
+                    <p>Complete legal support including title verification, documentation, registry, and mutation assistance.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 reveal">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="bi bi-calculator"></i></div>
+                    <h5>Property Valuation</h5>
+                    <p>Accurate market-value assessments by certified professionals to help you make informed decisions.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 reveal">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="bi bi-graph-up"></i></div>
+                    <h5>Investment Advisory</h5>
+                    <p>Expert guidance on high-growth locations and investment strategies for maximum returns.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 reveal">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="bi bi-bank"></i></div>
+                    <h5>Loan Assistance</h5>
+                    <p>We help you navigate bank loans and financing options with our partner financial institutions.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 reveal">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="bi bi-house-gear"></i></div>
+                    <h5>Site Development</h5>
+                    <p>End-to-end site development including boundary walls, approach roads, water, and electricity setup.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Process -->
+<section class="section-padding section-dark">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="badge-label">Our Process</span>
+            <h2>How It Works</h2>
+            <p>A simple, transparent process designed for your convenience.</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-3 reveal">
+                <div class="text-center">
+                    <div style="width:70px;height:70px;border-radius:50%;background:var(--black,#0a0a0a);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:800;margin:0 auto 20px;font-family:'Inter',sans-serif;" class="float">1</div>
+                    <h5 style="font-family:'Inter',sans-serif;font-weight:700;">Consult</h5>
+                    <p style="color:var(--text-light);font-size:0.9rem;">Share your requirements and budget with our team.</p>
+                </div>
+            </div>
+            <div class="col-md-3 reveal">
+                <div class="text-center">
+                    <div style="width:70px;height:70px;border-radius:50%;background:var(--gray-700,#404040);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:800;margin:0 auto 20px;font-family:'Inter',sans-serif;" class="float float-delay-1">2</div>
+                    <h5 style="font-family:'Inter',sans-serif;font-weight:700;">Explore</h5>
+                    <p style="color:var(--text-light);font-size:0.9rem;">Visit shortlisted plots with our guided site tours.</p>
+                </div>
+            </div>
+            <div class="col-md-3 reveal">
+                <div class="text-center">
+                    <div style="width:70px;height:70px;border-radius:50%;background:linear-gradient(135deg,var(--accent,#c9a55a),var(--accent-dark,#a8863a));color:var(--black,#0a0a0a);display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:800;margin:0 auto 20px;font-family:'Inter',sans-serif;" class="float float-delay-2">3</div>
+                    <h5 style="font-family:'Inter',sans-serif;font-weight:700;">Verify</h5>
+                    <p style="color:var(--text-light);font-size:0.9rem;">Complete legal verification and documentation.</p>
+                </div>
+            </div>
+            <div class="col-md-3 reveal">
+                <div class="text-center">
+                    <div style="width:70px;height:70px;border-radius:50%;background:#28a745;color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:800;margin:0 auto 20px;font-family:'Inter',sans-serif;" class="float float-delay-3">4</div>
+                    <h5 style="font-family:'Inter',sans-serif;font-weight:700;">Own</h5>
+                    <p style="color:var(--text-light);font-size:0.9rem;">Register and take possession of your dream plot.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta-section">
+    <div class="container text-center position-relative" style="z-index:2;">
+        <h2 class="mb-3">Need a Custom Solution?</h2>
+        <p class="mb-4" style="color:rgba(255,255,255,0.8);max-width:550px;margin:0 auto 30px;">Contact us to discuss your specific requirements. We're here to help you every step of the way.</p>
+        <a href="{{ url_for('main.contact') }}" class="btn-primary-custom"><i class="bi bi-chat-dots"></i> Contact Us Today</a>
+    </div>
+</section>
+{% endblock %}

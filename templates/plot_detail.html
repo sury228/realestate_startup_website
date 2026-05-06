@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block title %}{{ plot.title }} — Mahamaya Real Estate{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <h1>Plot Details</h1>
+        <div class="breadcrumb-custom">
+            <a href="{{ url_for('main.home') }}">Home</a><span>/</span>
+            <a href="{{ url_for('main.plots') }}">Plots</a><span>/</span>
+            <span>{{ plot.title[:30] }}...</span>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-7">
+                <div class="detail-gallery reveal">
+                    {% if plot.image_filename and plot.image_filename != 'default_plot.jpg' %}
+                    <img src="{{ url_for('static', filename='uploads/' + plot.image_filename) }}" alt="{{ plot.title }}">
+                    {% else %}
+                    <div class="img-placeholder" style="height:400px;border-radius:var(--radius-lg);"><i class="bi bi-image"></i></div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="detail-info reveal">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <span class="badge badge-featured px-3 py-2" style="border-radius:8px;">{{ plot.plot_type }}</span>
+                        {% if plot.is_available %}
+                        <span class="badge badge-available px-3 py-2" style="border-radius:8px;">Available</span>
+                        {% else %}
+                        <span class="badge badge-sold px-3 py-2" style="border-radius:8px;">Sold</span>
+                        {% endif %}
+                    </div>
+                    <h3 class="mb-3">{{ plot.title }}</h3>
+                    <div class="detail-price mb-3">{{ plot.formatted_price() }}</div>
+                    <div class="detail-meta">
+                        <div class="detail-meta-item"><i class="bi bi-geo-alt-fill"></i>{{ plot.location }}</div>
+                        <div class="detail-meta-item"><i class="bi bi-arrows-angle-expand"></i>{{ plot.size }}</div>
+                        <div class="detail-meta-item"><i class="bi bi-calendar3"></i>Listed {{ plot.created_at.strftime('%b %d, %Y') }}</div>
+                    </div>
+                    <hr class="my-4" style="border-color:var(--border);">
+                    <h5 style="font-family:'Inter',sans-serif;font-weight:700;">Description</h5>
+                    <p style="color:var(--text-light);line-height:1.8;">{{ plot.description or 'No description available.' }}</p>
+                    <hr class="my-4" style="border-color:var(--border);">
+                    <div class="d-grid gap-2">
+                        <a href="{{ url_for('main.contact') }}" class="btn-primary-custom text-center"><i class="bi bi-chat-dots"></i> Enquire About This Plot</a>
+                        <a href="tel:+919876543210" class="btn btn-outline-secondary" style="border-radius:10px;padding:12px;font-weight:600;"><i class="bi bi-telephone"></i> Call Us: +91 98765 43210</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Related Plots -->
+        {% if related_plots %}
+        <div class="mt-5 pt-4">
+            <div class="section-header reveal">
+                <h2>Similar Plots Nearby</h2>
+            </div>
+            <div class="row g-4">
+                {% for rp in related_plots %}
+                <div class="col-lg-4 col-md-6 fade-in-up">
+                    <div class="plot-card">
+                        <div class="plot-card-img">
+                            {% if rp.image_filename and rp.image_filename != 'default_plot.jpg' %}
+                            <img src="{{ url_for('static', filename='uploads/' + rp.image_filename) }}" alt="{{ rp.title }}">
+                            {% else %}
+                            <div class="img-placeholder" style="height:220px;"><i class="bi bi-image"></i></div>
+                            {% endif %}
+                            <span class="plot-card-badge">{{ rp.plot_type }}</span>
+                        </div>
+                        <div class="plot-card-body">
+                            <h5>{{ rp.title }}</h5>
+                            <div class="plot-card-meta">
+                                <span><i class="bi bi-geo-alt"></i> {{ rp.location }}</span>
+                                <span><i class="bi bi-arrows-angle-expand"></i> {{ rp.size }}</span>
+                            </div>
+                            <div class="plot-card-footer">
+                                <span class="plot-price">{{ rp.formatted_price() }}</span>
+                                <a href="{{ url_for('main.plot_detail', plot_id=rp.id) }}" class="btn btn-sm">View</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
