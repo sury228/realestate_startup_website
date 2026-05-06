@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+{% block title %}About Us — Mahamaya Real Estate{% endblock %}
+
+{% block content %}
+<!-- Hero -->
+<section class="page-hero">
+    <div class="container">
+        <h1>About <span class="text-accent">Mahamaya Estate</span></h1>
+        <p>Building trust, delivering dreams — since 2010.</p>
+        <div class="breadcrumb-custom"><a href="{{ url_for('main.home') }}">Home</a><span>/</span><span>About Us</span></div>
+    </div>
+</section>
+
+<!-- Story -->
+<section class="section-padding">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6 reveal">
+                <div style="border-radius:var(--radius-lg);overflow:hidden;height:100%;min-height:350px;">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80" alt="Luxury Home" style="width:100%;height:100%;object-fit:cover;">
+                </div>
+            </div>
+            <div class="col-lg-6 reveal">
+                <span class="badge-label">Our Story</span>
+                <h2 class="mb-4">A Legacy of Trust & Transparency</h2>
+                <p class="mb-3" style="color:var(--text-light);">Founded in 2010, Mahamaya Real Estate has grown from a small local agency into one of Chhattisgarh's most trusted names in property development and land sales. Our journey has been defined by an unwavering commitment to customer satisfaction, legal transparency, and ethical business practices.</p>
+                <p class="mb-4" style="color:var(--text-light);">We specialize in identifying and developing prime locations across Raipur, Bilaspur, Durg, and beyond — offering our clients investment opportunities that combine growth potential with security. Every plot we sell comes with verified documentation, clear titles, and our personal guarantee of quality.</p>
+                <div class="d-flex gap-4 flex-wrap">
+                    <div><h4 class="mb-0" style="color:var(--gold);">500+</h4><small class="text-muted">Plots Sold</small></div>
+                    <div><h4 class="mb-0" style="color:var(--gold);">1200+</h4><small class="text-muted">Happy Clients</small></div>
+                    <div><h4 class="mb-0" style="color:var(--gold);">25+</h4><small class="text-muted">Projects</small></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Mission & Vision -->
+<section class="section-padding section-dark">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-6 reveal">
+                <div class="feature-card text-start" style="padding:40px;">
+                    <div class="feature-icon mb-3" style="margin:0;"><i class="bi bi-bullseye"></i></div>
+                    <h4>Our Mission</h4>
+                    <p style="color:var(--text-light);font-size:0.95rem;">To democratize real estate investment by providing affordable, legally verified, and strategically located plots to every Indian family. We strive to make property ownership accessible, transparent, and rewarding.</p>
+                </div>
+            </div>
+            <div class="col-md-6 reveal">
+                <div class="feature-card text-start" style="padding:40px;">
+                    <div class="feature-icon mb-3" style="margin:0;"><i class="bi bi-eye"></i></div>
+                    <h4>Our Vision</h4>
+                    <p style="color:var(--text-light);font-size:0.95rem;">To become Chhattisgarh's most trusted and innovative real estate brand, setting new benchmarks in customer experience, property development, and sustainable growth in the real estate sector.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Trust Factors -->
+<section class="section-padding">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="badge-label">Trust Factors</span>
+            <h2>Why Clients Choose Mahamaya</h2>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6 reveal">
+                <div class="trust-card">
+                    <h3 class="counter-animate" data-target="100">0</h3>
+                    <p>% Legal Verification</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 reveal">
+                <div class="trust-card">
+                    <h3 class="counter-animate" data-target="500">0</h3>
+                    <p>Plots Delivered</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 reveal">
+                <div class="trust-card">
+                    <h3 class="counter-animate" data-target="15">0</h3>
+                    <p>Years of Service</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 reveal">
+                <div class="trust-card">
+                    <h3 class="counter-animate" data-target="98">0</h3>
+                    <p>% Client Satisfaction</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Our Team -->
+<section class="section-padding section-warm">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="badge-label">Our Team</span>
+            <h2>Meet the Visionaries</h2>
+            <p>Led by experienced professionals with decades of expertise in architecture, building, and real estate.</p>
+        </div>
+        <div class="row g-4 justify-content-center">
+            <div class="col-lg-5 col-md-6 reveal">
+                <div class="team-card float float-delay-1">
+                    <div class="team-avatar"><i class="bi bi-person-fill"></i></div>
+                    <div class="team-card-body">
+                        <h4>Mr. Santosh Jha</h4>
+                        <span class="team-role"><i class="bi bi-building me-1"></i> Builder & Founder</span>
+                        <p>With over 15 years of experience in construction and real estate development, Mr. Santosh Jha has built a reputation for quality, integrity, and timely delivery. His vision drives Mahamaya's commitment to excellence.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-6 reveal">
+                <div class="team-card float float-delay-2">
+                    <div class="team-avatar"><i class="bi bi-person-fill"></i></div>
+                    <div class="team-card-body">
+                        <h4>Arch. Archita Jha</h4>
+                        <span class="team-role"><i class="bi bi-rulers me-1"></i> Architect & Designer</span>
+                        <p>A talented architect with a keen eye for design and functionality, Arch. Archita Jha brings modern aesthetics and sustainable design principles to every project, ensuring spaces that inspire.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Core Values -->
+<section class="section-padding section-dark">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="badge-label">Core Values</span>
+            <h2>What We Stand For</h2>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6 reveal">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="bi bi-heart"></i></div>
+                    <h5>Integrity</h5>
+                    <p>Honesty and ethical practices form the bedrock of every transaction we facilitate.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 reveal">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="bi bi-lightning-charge"></i></div>
+                    <h5>Innovation</h5>
+                    <p>We leverage technology and market insights to offer the best opportunities.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 reveal">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="bi bi-people"></i></div>
+                    <h5>Customer First</h5>
+                    <p>Every decision we make is centered around creating value for our clients.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% block title %}Available Plots — Mahamaya Real Estate{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <h1>Available <span class="text-accent">Plots</span></h1>
+        <p>Browse our collection of premium plots across Chhattisgarh</p>
+        <div class="breadcrumb-custom"><a href="{{ url_for('main.home') }}">Home</a><span>/</span><span>Plots</span></div>
+    </div>
+</section>
+
+<section class="section-padding">
+    <div class="container">
+        <!-- Filter Bar -->
+        <div class="filter-bar mb-4 reveal">
+            <form method="GET" action="{{ url_for('main.plots') }}">
+                <div class="row g-3 align-items-end">
+                    <div class="col-lg-3 col-md-6">
+                        <label class="form-label"><i class="bi bi-search me-1"></i>Search</label>
+                        <input type="text" name="search" class="form-control form-control-custom" placeholder="Search plots..." value="{{ search }}">
+                    </div>
+                    <div class="col-lg-2 col-md-6">
+                        <label class="form-label"><i class="bi bi-geo-alt me-1"></i>Location</label>
+                        <select name="location" class="form-select form-control-custom filter-auto-submit">
+                            <option value="">All Locations</option>
+                            {% for loc in locations %}<option value="{{ loc }}" {% if location_filter == loc %}selected{% endif %}>{{ loc }}</option>{% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-lg-2 col-md-6">
+                        <label class="form-label"><i class="bi bi-tag me-1"></i>Type</label>
+                        <select name="plot_type" class="form-select form-control-custom filter-auto-submit">
+                            <option value="">All Types</option>
+                            {% for pt in plot_types %}<option value="{{ pt }}" {% if plot_type_filter == pt %}selected{% endif %}>{{ pt }}</option>{% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-lg-2 col-md-6">
+                        <label class="form-label"><i class="bi bi-sort-down me-1"></i>Sort By</label>
+                        <select name="sort" class="form-select form-control-custom filter-auto-submit">
+                            <option value="newest" {% if sort_by == 'newest' %}selected{% endif %}>Newest First</option>
+                            <option value="price_low" {% if sort_by == 'price_low' %}selected{% endif %}>Price: Low to High</option>
+                            <option value="price_high" {% if sort_by == 'price_high' %}selected{% endif %}>Price: High to Low</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-3 col-md-12">
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-primary-custom flex-grow-1" style="padding:12px 20px;"><i class="bi bi-funnel"></i> Filter</button>
+                            <a href="{{ url_for('main.plots') }}" class="btn btn-outline-secondary" style="border-radius:10px;padding:12px 16px;"><i class="bi bi-x-lg"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Results -->
+        <div class="row g-4">
+            {% for plot in plots.items %}
+            <div class="col-lg-4 col-md-6 fade-in-up">
+                <div class="plot-card">
+                    <div class="plot-card-img">
+                        {% if plot.image_filename and plot.image_filename != 'default_plot.jpg' %}
+                        <img src="{{ url_for('static', filename='uploads/' + plot.image_filename) }}" alt="{{ plot.title }}">
+                        {% else %}
+                        <div class="img-placeholder" style="height:220px;"><i class="bi bi-image"></i></div>
+                        {% endif %}
+                        <span class="plot-card-badge">{{ plot.plot_type }}</span>
+                    </div>
+                    <div class="plot-card-body">
+                        <h5>{{ plot.title }}</h5>
+                        <div class="plot-card-meta">
+                            <span><i class="bi bi-geo-alt"></i> {{ plot.location }}</span>
+                            <span><i class="bi bi-arrows-angle-expand"></i> {{ plot.size }}</span>
+                        </div>
+                        <div class="plot-card-footer">
+                            <span class="plot-price">{{ plot.formatted_price() }}</span>
+                            <a href="{{ url_for('main.plot_detail', plot_id=plot.id) }}" class="btn btn-sm">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% if not plots.items %}
+            <div class="col-12 text-center py-5">
+                <i class="bi bi-search display-3 text-muted"></i>
+                <h4 class="mt-3 text-muted">No plots found</h4>
+                <p class="text-muted">Try adjusting your search or filters.</p>
+                <a href="{{ url_for('main.plots') }}" class="btn-primary-custom mt-2">Clear Filters</a>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Pagination -->
+        {% if plots.pages > 1 %}
+        <nav class="mt-5 d-flex justify-content-center">
+            <ul class="pagination">
+                {% if plots.has_prev %}
+                <li class="page-item"><a class="page-link" href="{{ url_for('main.plots', page=plots.prev_num, search=search, location=location_filter, plot_type=plot_type_filter, sort=sort_by) }}">&laquo;</a></li>
+                {% endif %}
+                {% for p in plots.iter_pages(left_edge=1, right_edge=1, left_current=2, right_current=2) %}
+                    {% if p %}
+                    <li class="page-item {% if p == plots.page %}active{% endif %}"><a class="page-link" href="{{ url_for('main.plots', page=p, search=search, location=location_filter, plot_type=plot_type_filter, sort=sort_by) }}">{{ p }}</a></li>
+                    {% else %}
+                    <li class="page-item disabled"><span class="page-link">…</span></li>
+                    {% endif %}
+                {% endfor %}
+                {% if plots.has_next %}
+                <li class="page-item"><a class="page-link" href="{{ url_for('main.plots', page=plots.next_num, search=search, location=location_filter, plot_type=plot_type_filter, sort=sort_by) }}">&raquo;</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

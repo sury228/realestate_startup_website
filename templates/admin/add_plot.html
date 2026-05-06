@@ -1,0 +1,65 @@
+{% extends 'admin/base_admin.html' %}
+{% block admin_title %}Add Plot{% endblock %}
+
+{% block admin_content %}
+<div class="admin-header">
+    <h2><i class="bi bi-plus-circle me-2"></i>Add New Plot</h2>
+    <a href="{{ url_for('admin.manage_plots') }}" class="btn btn-outline-secondary" style="border-radius:10px;"><i class="bi bi-arrow-left"></i> Back</a>
+</div>
+
+<div style="background:var(--bg-white);border-radius:var(--radius-lg);padding:35px;box-shadow:var(--shadow-sm);border:1px solid var(--border);max-width:800px;">
+    <form method="POST" action="{{ url_for('admin.add_plot') }}" enctype="multipart/form-data">
+        <div class="row g-3">
+            <div class="col-12">
+                <label class="form-label">Plot Title <span class="text-danger">*</span></label>
+                <input type="text" name="title" class="form-control form-control-custom" placeholder="e.g. Premium Corner Plot — Sunrise Enclave" required>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Price (₹) <span class="text-danger">*</span></label>
+                <input type="number" name="price" class="form-control form-control-custom" placeholder="e.g. 3500000" min="1" required>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Location <span class="text-danger">*</span></label>
+                <input type="text" name="location" class="form-control form-control-custom" placeholder="e.g. Raipur, Chhattisgarh" required>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Size <span class="text-danger">*</span></label>
+                <input type="text" name="size" class="form-control form-control-custom" placeholder="e.g. 2400 sq ft" required>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Plot Type</label>
+                <select name="plot_type" class="form-select form-control-custom">
+                    <option value="Residential">Residential</option>
+                    <option value="Commercial">Commercial</option>
+                    <option value="Agricultural">Agricultural</option>
+                    <option value="Industrial">Industrial</option>
+                </select>
+            </div>
+            <div class="col-12">
+                <label class="form-label">Description</label>
+                <textarea name="description" class="form-control form-control-custom" rows="4" placeholder="Detailed description of the plot..."></textarea>
+            </div>
+            <div class="col-12">
+                <label class="form-label">Plot Image</label>
+                <input type="file" name="image" id="image-upload" class="form-control form-control-custom" accept="image/*">
+                <img id="image-preview" src="" alt="Preview" style="display:none;max-height:200px;margin-top:12px;border-radius:10px;">
+            </div>
+            <div class="col-md-6">
+                <div class="form-check form-switch mt-2">
+                    <input class="form-check-input" type="checkbox" name="is_featured" id="is_featured">
+                    <label class="form-check-label" for="is_featured">Mark as Featured</label>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-check form-switch mt-2">
+                    <input class="form-check-input" type="checkbox" name="is_available" id="is_available" checked>
+                    <label class="form-check-label" for="is_available">Available for Sale</label>
+                </div>
+            </div>
+            <div class="col-12 mt-4">
+                <button type="submit" class="btn-primary-custom" style="padding:14px 40px;"><i class="bi bi-check-lg"></i> Add Plot</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

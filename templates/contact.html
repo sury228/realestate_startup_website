@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% block title %}Contact Us — Mahamaya Real Estate{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <h1>Contact <span class="text-accent">Us</span></h1>
+        <p>We'd love to hear from you. Reach out and let's start a conversation.</p>
+        <div class="breadcrumb-custom"><a href="{{ url_for('main.home') }}">Home</a><span>/</span><span>Contact</span>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-7 reveal">
+                <div class="contact-form-card">
+                    <h3 class="mb-2">Send Us a Message</h3>
+                    <p class="text-muted mb-4">Fill out the form below and we'll get back to you within 24 hours.</p>
+                    <form method="POST" action="{{ url_for('main.contact') }}" id="contact-form">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label" for="name">Full Name <span
+                                        class="text-danger">*</span></label>
+                                <input type="text" class="form-control form-control-custom" id="name" name="name"
+                                    placeholder="Your full name" required>
+                                <div class="invalid-feedback">Please enter your name.</div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label" for="email">Email Address <span
+                                        class="text-danger">*</span></label>
+                                <input type="email" class="form-control form-control-custom" id="email" name="email"
+                                    placeholder="you@example.com" required>
+                                <div class="invalid-feedback">Please enter a valid email.</div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label" for="phone">Phone Number</label>
+                                <input type="tel" class="form-control form-control-custom" id="phone" name="phone"
+                                    placeholder="+91 98765 43210">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label" for="subject">Subject</label>
+                                <select class="form-select form-control-custom" id="subject" name="subject">
+                                    <option value="General Inquiry">General Inquiry</option>
+                                    <option value="Plot Inquiry">Plot Inquiry</option>
+                                    <option value="Site Visit">Schedule Site Visit</option>
+                                    <option value="Investment">Investment Consultation</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label" for="message">Message <span
+                                        class="text-danger">*</span></label>
+                                <textarea class="form-control form-control-custom" id="message" name="message" rows="5"
+                                    placeholder="Tell us about your requirements..." required></textarea>
+                                <div class="invalid-feedback">Please enter your message.</div>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn-primary-custom w-100 justify-content-center"
+                                    style="padding:16px;"><i class="bi bi-send"></i> Send Message</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-5 reveal">
+                <div class="contact-info-card">
+                    <h4 class="mb-4">Get In Touch</h4>
+                    <div class="contact-info-item">
+                        <i class="bi bi-geo-alt-fill"></i>
+                        <div><strong>Office Address</strong>
+                            <p>2 Ring Road Narmada Nagar, Mangala Chowk<br> Bilaspur, Chhattisgarh 495001</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <i class="bi bi-telephone-fill"></i>
+                        <div><strong>Phone</strong>
+                            <p>+91 78050 19007<br>+91 78982 18907</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <i class="bi bi-envelope-fill"></i>
+                        <div><strong>Email</strong>
+                            <p>mahamayarealestate26@gmail.com<br></p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <i class="bi bi-clock-fill"></i>
+                        <div><strong>Working Hours</strong>
+                            <p>Monday – Saturday<br>9:00 AM – 7:00 PM</p>
+                        </div>
+                    </div>
+                    <hr style="border-color:rgba(255,255,255,0.2);margin:20px 0;">
+                    <h5 style="font-size:0.95rem;font-family:'Inter',sans-serif;">Follow Us</h5>
+                    <div class="d-flex gap-3 mt-2">
+                        <a href="#" style="color:#fff;font-size:1.3rem;opacity:0.8;"><i class="bi bi-facebook"></i></a>
+                        <a href="#" style="color:#fff;font-size:1.3rem;opacity:0.8;"><i class="bi bi-instagram"></i></a>
+                        <a href="#" style="color:#fff;font-size:1.3rem;opacity:0.8;"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#" style="color:#fff;font-size:1.3rem;opacity:0.8;"><i class="bi bi-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
