@@ -33,4 +33,4 @@ class Config:
 
     # Admin defaults
     ADMIN_USERNAME = os.environ.get('ADMIN_USERNAME', 'SUMAN')
-    ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD', 'SUMAN225')
+    ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD', 'SUMAN@225')
