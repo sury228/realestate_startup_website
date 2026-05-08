@@ -32,5 +32,5 @@ class Config:
     BUSINESS_OWNER_EMAIL = os.environ.get('BUSINESS_OWNER_EMAIL', '')
 
     # Admin defaults
-    ADMIN_USERNAME = os.environ.get('ADMIN_USERNAME', 'admin')
-    ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD', 'admin123')
+    ADMIN_USERNAME = os.environ.get('ADMIN_USERNAME', 'SUMAN')
+    ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD', 'SUMAN225')
