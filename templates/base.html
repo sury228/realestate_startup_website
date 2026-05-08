@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Mahamaya Real Estate — Premium plots and land investments in Chhattisgarh. Find your dream property with trusted guidance.">
+    <meta name="description"
+        content="Mahamaya Architects & Real Estate — Premium plots, architecture, and land investments in Chhattisgarh. Find your dream property with trusted guidance.">
     <meta name="keywords" content="real estate, plots, land, property, Chhattisgarh, Raipur, investment">
-    <title>{% block title %}Mahamaya Real Estate{% endblock %}</title>
+    <title>{% block title %}Mahamaya Architects & Real Estate{% endblock %}</title>
 
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -15,10 +17,19 @@
     <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
     {% block extra_css %}{% endblock %}
 </head>
-<body>
+
+<body class="page-transition">
+    <script>
+        if (sessionStorage.getItem('splashShown')) {
+            document.documentElement.classList.add('no-splash');
+        }
+    </script>
     <!-- Page Loader -->
     <div class="page-loader">
-        <div class="loader-spinner"></div>
+        <div class="page-loader-content">
+            <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Mahamaya Logo" class="loader-logo">
+            <div class="loader-spinner"></div>
+        </div>
     </div>
 
     <!-- Flash Messages -->
@@ -27,7 +38,8 @@
     <div class="flash-container">
         {% for category, message in messages %}
         <div class="flash-message flash-{{ category }}">
-            <i class="bi {% if category == 'success' %}bi-check-circle-fill{% elif category == 'danger' %}bi-exclamation-circle-fill{% elif category == 'warning' %}bi-exclamation-triangle-fill{% else %}bi-info-circle-fill{% endif %}"></i>
+            <i
+                class="bi {% if category == 'success' %}bi-check-circle-fill{% elif category == 'danger' %}bi-exclamation-circle-fill{% elif category == 'warning' %}bi-exclamation-triangle-fill{% else %}bi-info-circle-fill{% endif %}"></i>
             {{ message }}
         </div>
         {% endfor %}
@@ -37,14 +49,17 @@
 
     {% block navbar %}
     <!-- Top Info Bar -->
-    <div class="top-bar" style="background:var(--maroon-deep,#3a0b12);color:rgba(255,255,255,0.8);font-size:0.82rem;padding:8px 0;position:fixed;top:0;left:0;right:0;z-index:1051;">
+    <div class="top-bar"
+        style="background:var(--cement-dark,#4a4543);color:rgba(255,255,255,0.8);font-size:0.82rem;padding:8px 0;position:fixed;top:0;left:0;right:0;z-index:1051;">
         <div class="container d-flex justify-content-between align-items-center flex-wrap gap-2">
             <div class="d-flex gap-4 align-items-center">
-                <span><i class="bi bi-clock me-1" style="color:var(--sand,#d4b896);"></i> Mon-Sat: 9AM - 7PM</span>
-                <span class="d-none d-md-inline"><i class="bi bi-envelope me-1" style="color:var(--sand,#d4b896);"></i> mahamayarealestate26@gmail.com</span>
+                <span><i class="bi bi-clock me-1" style="color:var(--accent,#d4701e);"></i> Mon-Sat: 9AM - 7PM</span>
+                <span class="d-none d-md-inline"><i class="bi bi-envelope me-1"
+                        style="color:var(--accent,#d4701e);"></i> mahamayarealestate26@gmail.com</span>
             </div>
             <div class="d-flex gap-4 align-items-center">
-                <a href="tel:+917805019007" style="color:rgba(255,255,255,0.9);"><i class="bi bi-telephone me-1" style="color:var(--sand,#d4b896);"></i> +91 78050 19007</a>
+                <a href="tel:+917805019007" style="color:rgba(255,255,255,0.9);"><i class="bi bi-telephone me-1"
+                        style="color:var(--accent,#d4701e);"></i> +91 78050 19007</a>
                 <div class="d-none d-md-flex gap-2">
                     <a href="#" style="color:rgba(255,255,255,0.7);"><i class="bi bi-facebook"></i></a>
                     <a href="#" style="color:rgba(255,255,255,0.7);"><i class="bi bi-instagram"></i></a>
@@ -57,19 +72,27 @@
     <nav class="navbar navbar-expand-lg navbar-custom fixed-top" style="top:36px;">
         <div class="container">
             <a class="navbar-brand" href="{{ url_for('main.home') }}">
-                <i class="bi bi-building"></i> Mahamaya <span>Estate</span>
+                <span>Mahamaya <strong>Architects & Realestate</strong></span>
             </a>
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto align-items-center gap-1">
-                    <li class="nav-item"><a class="nav-link {% if request.endpoint == 'main.home' %}active{% endif %}" href="{{ url_for('main.home') }}">Home</a></li>
-                    <li class="nav-item"><a class="nav-link {% if request.endpoint == 'main.about' %}active{% endif %}" href="{{ url_for('main.about') }}">About</a></li>
-                    <li class="nav-item"><a class="nav-link {% if request.endpoint == 'main.plots' %}active{% endif %}" href="{{ url_for('main.plots') }}">Plots</a></li>
-                    <li class="nav-item"><a class="nav-link {% if request.endpoint == 'main.services' %}active{% endif %}" href="{{ url_for('main.services') }}">Services</a></li>
-                    <li class="nav-item"><a class="nav-link {% if request.endpoint == 'main.contact' %}active{% endif %}" href="{{ url_for('main.contact') }}">Contact</a></li>
-                    <li class="nav-item ms-2"><a href="tel:+917805019007" class="nav-link btn-admin"><i class="bi bi-telephone-fill"></i> Get a Quote</a></li>
+                    <li class="nav-item"><a class="nav-link {% if request.endpoint == 'main.home' %}active{% endif %}"
+                            href="{{ url_for('main.home') }}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link {% if request.endpoint == 'main.about' %}active{% endif %}"
+                            href="{{ url_for('main.about') }}">About</a></li>
+                    <li class="nav-item"><a class="nav-link {% if request.endpoint == 'main.plots' %}active{% endif %}"
+                            href="{{ url_for('main.plots') }}">Plots</a></li>
+                    <li class="nav-item"><a
+                            class="nav-link {% if request.endpoint == 'main.services' %}active{% endif %}"
+                            href="{{ url_for('main.services') }}">Services</a></li>
+                    <li class="nav-item"><a
+                            class="nav-link {% if request.endpoint == 'main.contact' %}active{% endif %}"
+                            href="{{ url_for('main.contact') }}">Contact</a></li>
+                    <li class="nav-item ms-2"><a href="tel:+917805019007" class="nav-link btn-admin"><i
+                                class="bi bi-telephone-fill"></i> Get a Quote</a></li>
                 </ul>
             </div>
         </div>
@@ -87,8 +110,10 @@
         <div class="container">
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6">
-                    <h5><i class="bi bi-building"></i> Mahamaya Estate</h5>
-                    <p style="font-size:0.9rem;color:rgba(255,255,255,0.6);margin-bottom:20px;">Your trusted partner in finding the perfect plot. We deliver premium real estate solutions with transparency and integrity.</p>
+                    <h5><i class="bi bi-building"></i> Mahamaya Architects & Estate</h5>
+                    <p style="font-size:0.9rem;color:rgba(255,255,255,0.6);margin-bottom:20px;">Your trusted partner in
+                        finding the perfect plot. We deliver premium real estate solutions with transparency and
+                        integrity.</p>
                     <div class="d-flex gap-3">
                         <a href="#" class="text-white fs-5"><i class="bi bi-facebook"></i></a>
                         <a href="#" class="text-white fs-5"><i class="bi bi-instagram"></i></a>
@@ -118,7 +143,8 @@
                 <div class="col-lg-3 col-md-6">
                     <h5>Contact Info</h5>
                     <ul class="footer-links">
-                        <li><i class="bi bi-geo-alt me-2 text-accent"></i>2 Ring Road, Narmada Nagar, Mangala Chowk, Bilaspur, CG 495001</li>
+                        <li><i class="bi bi-geo-alt me-2 text-accent"></i>2 Ring Road, Narmada Nagar, Mangala Chowk,
+                            Bilaspur, CG 495001</li>
                         <li><i class="bi bi-telephone me-2 text-accent"></i>+91 78050 19007</li>
                         <li><i class="bi bi-envelope me-2 text-accent"></i>mahamayarealestate26@gmail.com</li>
                         <li><i class="bi bi-clock me-2 text-accent"></i>Mon - Sat: 9AM - 7PM</li>
@@ -128,25 +154,22 @@
         </div>
         <div class="footer-bottom">
             <div class="container">
-                &copy; {{ 2026 }} Mahamaya Real Estate. All rights reserved. | Designed with <i class="bi bi-heart-fill text-accent"></i>
+                &copy; {{ 2026 }} Mahamaya Architects & Real Estate. All rights reserved. | Designed with <i
+                    class="bi bi-heart-fill text-accent"></i>
             </div>
         </div>
     </footer>
     {% endblock %}
 
     <!-- Floating WhatsApp & Call Buttons -->
-<<<<<<< HEAD
-    <a href="https://wa.me/917898218907?text=Hi%2C%20I%27m%20interested%20in%20your%20properties" target="_blank" 
-=======
-    <a href="https://wa.me/917805019007?text=Hi%2C%20I%27m%20interested%20in%20your%20properties" target="_blank" 
->>>>>>> caf1ce8541ef7e8a76bca5de4873b25b6fc9cafc
-       style="position:fixed;bottom:24px;right:24px;width:58px;height:58px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.6rem;box-shadow:0 4px 20px rgba(37,211,102,0.4);z-index:1000;transition:all .3s ease;animation:float 3s ease-in-out infinite;"
-       title="Chat on WhatsApp">
+    <a href="https://wa.me/917805019007?text=Hi%2C%20I%27m%20interested%20in%20your%20properties" target="_blank"
+        style="position:fixed;bottom:24px;right:24px;width:58px;height:58px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.6rem;box-shadow:0 4px 20px rgba(37,211,102,0.4);z-index:1000;transition:all .3s ease;animation:float 3s ease-in-out infinite;"
+        title="Chat on WhatsApp">
         <i class="bi bi-whatsapp"></i>
     </a>
-    <a href="tel:+917805019007" 
-       style="position:fixed;bottom:24px;left:24px;width:58px;height:58px;background:var(--black,#0a0a0a);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.4rem;box-shadow:0 4px 20px rgba(0,0,0,0.3);z-index:1000;transition:all .3s ease;animation:float 3s ease-in-out infinite;animation-delay:1s;"
-       title="Call Us">
+    <a href="tel:+917805019007"
+        style="position:fixed;bottom:24px;left:24px;width:58px;height:58px;background:var(--cement,#6b6462);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.4rem;box-shadow:0 4px 20px rgba(74,69,67,0.35);z-index:1000;transition:all .3s ease;animation:float 3s ease-in-out infinite;animation-delay:1s;"
+        title="Call Us">
         <i class="bi bi-telephone-fill"></i>
     </a>
     <!-- Scripts -->
@@ -154,4 +177,5 @@
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
     {% block extra_js %}{% endblock %}
 </body>
+
 </html>

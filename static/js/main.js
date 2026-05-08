@@ -1,11 +1,39 @@
 /* === Mahamaya Real Estate — Main JavaScript === */
 
-document.addEventListener('DOMContentLoaded', function () {
-  // Hide page loader
+window.addEventListener('load', function () {
   const loader = document.querySelector('.page-loader');
-  if (loader) {
-    setTimeout(() => loader.classList.add('hidden'), 400);
+  if (!loader) return;
+
+  if (sessionStorage.getItem('splashShown')) {
+    loader.classList.add('hidden');
+    return;
   }
+
+  setTimeout(() => {
+    loader.classList.add('hidden');
+    sessionStorage.setItem('splashShown', 'true');
+  }, 1900);
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  document.body.classList.add('page-loaded');
+
+  // Smooth page navigation
+  document.querySelectorAll('a[href]:not([target="_blank"]):not([href^="#"])').forEach(link => {
+    const url = new URL(link.href, window.location.href);
+    if (url.origin !== window.location.origin) return;
+
+    link.addEventListener('click', function (event) {
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      if (url.href === window.location.href) return;
+      event.preventDefault();
+      document.body.classList.remove('page-loaded');
+      document.body.classList.add('page-transition');
+      setTimeout(() => {
+        window.location.href = url.href;
+      }, 260);
+    });
+  });
 
   // Navbar scroll effect
   const navbar = document.querySelector('.navbar-custom');

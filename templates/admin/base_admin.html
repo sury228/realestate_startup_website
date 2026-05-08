@@ -21,7 +21,9 @@
 
     <!-- Sidebar -->
     <aside class="admin-sidebar">
-        <div class="brand"><i class="bi bi-building"></i> Mahamaya <span>Admin</span></div>
+        <div class="brand">
+            Mahamaya <span>Admin</span>
+        </div>
         <nav>
             <a href="{{ url_for('admin.dashboard') }}" class="admin-nav-link {% if request.endpoint == 'admin.dashboard' %}active{% endif %}"><i class="bi bi-speedometer2"></i> Dashboard</a>
             <a href="{{ url_for('admin.manage_plots') }}" class="admin-nav-link {% if 'plot' in request.endpoint %}active{% endif %}"><i class="bi bi-map"></i> Manage Plots</a>
